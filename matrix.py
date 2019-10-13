@@ -96,6 +96,16 @@ class MatrixCalculator:
         print("p(A) \n", result)
         return result
 
+    def inverse(self, matrix):
+        result = np.linalg.inv(matrix)
+        print("Inverse: \n", result)
+        return result 
+
+    def det(self, matrix):
+        result = np.linalg.det(matrix)
+        print("det: \n", result)
+        return result
+
 if __name__ == "__main__":
     calculator = MatrixCalculator()
     '''
@@ -165,8 +175,8 @@ if __name__ == "__main__":
     calculator.multiply(second_row_A, matrix_C)
 
     first_col_C = calculator.get_cols(matrix_C, 0)
-    second_col_C = calculator.get_cols(matrix_C, 0)
-    third_col_C = calculator.get_cols(matrix_C, 0)
+    second_col_C = calculator.get_cols(matrix_C, 1)
+    third_col_C = calculator.get_cols(matrix_C, 2)
     calculator.multiply(matrix_A, first_col_C)
     calculator.multiply(matrix_A, second_col_C)
     calculator.multiply(matrix_A, third_col_C)
@@ -214,3 +224,46 @@ if __name__ == "__main__":
     VD 3 trang 54
     '''
     print("VD 3 trang 54")
+    numbers_A = [-4, -2, 5, 5]
+    matrix_A = Matrix(rows=2, cols=2, numbers=numbers_A).get()
+    inverse_A = calculator.inverse(matrix_A)
+    calculator.powm(inverse_A, 3)
+
+    print("*"*100)
+    '''
+    VD 2 trang 68
+    '''
+    print("VD 2 trang 68")
+    numbers_C = [3, 1, 0, -1, 2, 2, 5, 0, -1]
+    matrix_C = Matrix(rows=3, cols=3, numbers=numbers_C).get()
+    inverse_C = calculator.inverse(matrix_C)
+    calculator.multiply(matrix_C, inverse_C)
+    calculator.multiply(inverse_C, matrix_C)
+
+    print("*"*100)
+    '''
+    VD 1 trang 84
+    '''
+    print("VD 1 trang 84")
+    numbers_A = [3, 1, 0, -1, 2, 2, 5, 0, -1]
+    numbers_B = [6, -7, 10]
+    matrix_A = Matrix(rows=3, cols=3, numbers=numbers_A).get()
+    matrix_B = Matrix(rows=3, cols=1, numbers=numbers_B).get()
+
+    inverse_A = calculator.inverse(matrix_A)
+    calculator.multiply(inverse_A, matrix_B)
+
+    print("*"*100)
+    '''
+    VD 7 trang 100
+    '''
+    print("VD 7 trang 100")
+    numbers_A = [3, 2, -9, 5]
+    numbers_B = [3, 5, 4, -2, -1, 8, -11, 1, 7]
+    numbers_C = [2, -6, 2, 2, -8, 3, -3, 1, 1]
+    matrix_A = Matrix(rows=2, cols=2, numbers=numbers_A).get()
+    matrix_B = Matrix(rows=3, cols=3, numbers=numbers_B).get()
+    matrix_C = Matrix(rows=3, cols=3, numbers=numbers_C).get()
+    calculator.det(matrix_A)
+    calculator.det(matrix_B)
+    calculator.det(matrix_C)
