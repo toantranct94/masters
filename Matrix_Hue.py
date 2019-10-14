@@ -1,5 +1,11 @@
 import sys
 import numpy as np
+# function Square matrix
+def SqrtMatrix(matrix):
+    return matrix*matrix
+ # function Square matrix
+def CubeMatrix(matrix):
+    return SqrtMatrix(matrix)*matrix
 #Ví dụ 2, tr35
 def Vd2_Tr35():
     A = np.matrix([(2, 0, -3, 2), (-1, 8, 10, -5)])
@@ -36,6 +42,7 @@ def Vd4_Tr37():
     a = np.matrix([(4, -10, 3)])
     b = np.matrix([(-4), (3), (8)]) 
     print("ab = ", a.dot(b)) #tính tích vô hướng sử dụng hàm dot
+#Ví dụ 5, tr37
 def Vd5_Tr37():
     A = np.matrix([(1, -3, 0, 4), (-2, 5, -8, 9)])
     C = np.matrix([(8, 5, 3), (-3, 10, 2),(2, 0, -4), (-1, -7, 5)]) 
@@ -108,3 +115,26 @@ def Vd10_Tr45():
     trE = np.sum(np.diag(E,0))
     print('trE =', trE)
 # Vd10_Tr45()
+#Ví dụ 4, tr50
+def Vd4_Tr50():
+    A = np.matrix([(-7, 3), (5, 1)])
+    I =  np.matrix([(1, 0), (0, 1)])
+    A2 = SqrtMatrix(A) # câu a
+    print("A2 = ")
+    print(A2)
+    A3 = CubeMatrix(A) #câu b
+    print("A3 = ")
+    print(A3)
+    pA = -6*A3 + 10*A - 9*I # câu c
+    print("p(A)= ")
+    print(pA)
+# Vd4_Tr50()
+#Ví dụ 3, tr54
+def Vd3_Tr54():
+    A = np.matrix([(-4, -2), (5, 5)])
+    A_1 = np.linalg.inv(A)
+    A_1_3 = CubeMatrix(A_1 )
+    print("A mũ -3 = ")
+    print( A_1_3 )
+Vd3_Tr54()
+
