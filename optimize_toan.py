@@ -66,14 +66,13 @@ class Optimizer:
         pass
 
     def bisection_algorithm(self, function_gx):
-
         '''
         function_gx > 0 where x > 2
         otherwise, function_gx < 0 where x < 2
         '''
         function_gx = str(function_gx)
         # init x1, x2
-        x1, x2 = -1, 3
+        x1, x2 = -2.25, 5.5
         rate = 0.0001
         while True:
             x = (x1 + x2) / 2
@@ -85,6 +84,7 @@ class Optimizer:
                 x1 = x
         
             if abs(y) <= rate:
+                print("Extreme value is {} approximately".format(x))
                 return x
 
         pass
@@ -117,6 +117,5 @@ if __name__ == "__main__":
     # draw both function
     op.draw_two(function_fx, function_gx, x_fx)
 
-    value = op.bisection_algorithm(function_gx)
-
-    print(value)
+    # implement bisection algorithm for finding approximate extreme value
+    op.bisection_algorithm(function_gx)
