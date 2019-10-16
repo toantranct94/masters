@@ -1,11 +1,18 @@
 import sys
 import numpy as np
+import math
 # function Square matrix
 def SqrtMatrix(matrix):
     return matrix*matrix
- # function Square matrix
+ # function cube matrix
 def CubeMatrix(matrix):
     return SqrtMatrix(matrix)*matrix
+ # function cos
+def Cos(self):
+    return math.cos(math.radians(self))
+# function sin
+def Sin(self):
+    return math.sin(math.radians(self))
 #Ví dụ 2, tr35
 def Vd2_Tr35():
     A = np.matrix([(2, 0, -3, 2), (-1, 8, 10, -5)])
@@ -136,5 +143,80 @@ def Vd3_Tr54():
     A_1_3 = CubeMatrix(A_1 )
     print("A mũ -3 = ")
     print( A_1_3 )
-Vd3_Tr54()
+# Vd3_Tr54()
+#Ví dụ 2, tr68
+def Vd2_Tr68():
+    A = np.matrix([(3, 1, 0), (-1, 2, 2), (5, 0, -1)])
+    An= np.linalg.inv(A)
+    print("Nghịch đảo A = ")
+    print(An)
+# Vd2_Tr68()
+#Ví dụ 1, tr84
+def Vd1_Tr84():
+    A = np.matrix([(3, 1, 0), (-1, 2, 2), (5, 0, -1)])
+    B =  np.matrix([[ 6],[-7],[10]])
+    A_1 = np.linalg.inv(A)
+    A_1B = A_1*B
+    print("x1 = ",float(A_1B[0]) )
+    print("x2= ",float(A_1B[1] ))
+    print("x3 = ",float(A_1B[2]))
+# Vd1_Tr84()
+#Ví dụ 7, tr100
+def Vd7_Tr100():
+    A = np.matrix([(3, 2), (-9, 5)])
+    B = np.matrix([(3, 5, 4), (-2, -1, 8), (-11, 1, 7)])
+    C = np.matrix([(2, -6, 2), (2, -8, 3), (-3, 1, 1)])
+    A1 = int(np.linalg.det(A)) #a
+    print('det(A) = ',A1)
+    B1 = int(np.linalg.det(B)) #b
+    print('det(B) = ',B1)
+    C1 = int(np.linalg.det(C)) #c
+    print('det(C) = ',C1)
+# Vd7_Tr100()
+#Ví dụ 1, tr178
+def Vd1_Tr178():
+    A =  np.matrix([[ 2],[-4],[1]])
+    B =  np.matrix([[10],[7],[-9]])
+    C =  np.matrix([[10],[7],[-9]])
+    I1 = np.matrix([(1, 0, 0), (0, -1, 0), (0, 0, 1)])
+    I2 = np.matrix([(1, 0, 0), (0, 0, 0), (0, 0, 0)])
+    I3 = np.matrix([(0, 0, 0), (0, 1, 0), (0, 0, 1)])
+    print("The point x = (2, -4, 1) => map to w =  ")
+    print(I1*A)
+    print("The projection here is ")
+    print(I2*B)
+    print("The projection here is ")
+    print(I3*C)
+# Vd1_Tr178()
+#Ví dụ 2, tr179
+def Vd2_Tr179():
+    A =  np.matrix([[ 2],[-6]])
+    B =  np.matrix([[0],[5],[1]])
+    C =  np.matrix([[-3],[4],[-2]])
+    I1 = np.matrix([(Cos(30), -Sin(30)), (Sin(30), Cos(30) )])
+    I2 = np.matrix([(0, 0, Sin(90)),(0, 1, 0),(-Sin(90), 0, 0)])
+    I3 = np.matrix([(Cos(25), -Sin(25), 0),(Sin(25), Cos(25), 0),(0, 0, 1)]) 
+    print('Result a) = ')
+    print(I1*A)
+    print('Result b) = ')
+    print(I2*B)
+    print('Result c) = ')
+    print(I3*C)
+# Vd2_Tr179()
+#Ví dụ 3, tr180
+def Vd3_Tr180():
+    A =  np.matrix([[4],[-1],[-3]])
+    B =  np.matrix([[4],[-1],[-3]])
+    C =  np.matrix([[4],[2]])
+    D =  np.matrix([[4],[2]]) 
+
+# Vd3_Tr180()
+#Ví dụ 3, tr312
+def Vd3_Tr312():
+    A = np.matrix([(4, 0, 1), (-1, -6, -2), (5, 0, 0)])
+    A = np.matrix([(6, 3, -8), (0, -2, 0), (1, 0, -3)])
+    A = np.matrix([(0, 1, 1), (1, 0, 1), (1, 1, 0)])
+    A = np.matrix([(4, 0, -1), (0, 3, 0), (1, 0, 2)])
+Vd3_Tr312()
+
 
