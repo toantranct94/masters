@@ -2,7 +2,6 @@ import numpy as np
 from sympy import Symbol
 from math import e
 import matplotlib.pyplot as plt
-
 s = ['a']
 x = Symbol('x')
 class Optimizer:
@@ -39,8 +38,8 @@ class Optimizer:
         ax.set_aspect('equal')
         ax.grid(True, which='both')
         plt.xlabel('f(x) = {}'.format(pt), fontsize=18)
-        ax.axhline(y=0, color='k')
-        ax.axvline(x=0, color='k')
+        ax.axhline(y=0, color='k') #màu trục y
+        ax.axvline(x=0, color='k') #màu trục x
         plt.show()
         pass
 # vẽ đồ thị hàm số 2
@@ -55,21 +54,21 @@ class Optimizer:
         ax.plot(x, y_gx, label='g(x)')
         ax.set_aspect('equal')
         ax.grid(True, which='both')
-        ax.axhline(y=0, color='k')
-        ax.axvline(x=0, color='k')
+        ax.axhline(y=0, color='k') #màu trục y
+        ax.axvline(x=0, color='k') #màu trục y
         ax.legend()
         plt.show()
         pass
 # giải thuật chia đôi
-    def bisection_algorithm(self, pt):
+    def bisection_algorithm(self,pt):
         '''
         function_gx > 0 where x > 2
         otherwise, function_gx < 0 where x < 2
         '''
-        function_gx = str(pt)
+        pt = str(pt)
         # init x1, x2
         x1, x2 = -2.25, 5.5
-        rate = 0.0001
+        rate = 0.0001 #điều kiện dừng
         while True:
             x = (x1 + x2) / 2
             y = str(self.derivative_calculator(pt))
@@ -80,9 +79,8 @@ class Optimizer:
                 x1 = x
         
             if abs(y) <= rate:
-                print("Extreme value is {} approximately".format(x))
+                print("Cực trị = {} giải thuật chia đôi".format(x))
                 return x
-
         pass
 
 if __name__ == "__main__":   
@@ -93,11 +91,10 @@ if __name__ == "__main__":
     a = 0.1
     _x = 1/a
     pt_fx = 'x*e**(-{}*x)'.format(a)
-    op = Optimizer()
+    op = Optimizer()   
     op.find_extreme(pt_fx, a, _x)
     x_fx = np.linspace(-0.75,5,100)
     # op.draw(function_fx, x_fx)
-
     print("*"*100)
     '''
     g(x) = f'(x)
@@ -109,5 +106,6 @@ if __name__ == "__main__":
     op.find_extreme(pt_gx, a, _x)
     # draw both function
     op.draw_two(pt_fx, pt_gx, x_fx)
-    # implement bisection algorithm for finding approximate extreme value
     op.bisection_algorithm(pt_gx)
+    # implement bisection algorithm for finding approximate extreme value
+
