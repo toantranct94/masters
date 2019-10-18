@@ -208,7 +208,7 @@ def Vd2_Tr179():
     B =  np.matrix([[0],[5],[1]])
     C =  np.matrix([[-3],[4],[-2]])
     I1 = np.matrix([(Cos(30), -Sin(30)), (Sin(30), Cos(30) )])
-    I2 = np.matrix([(0, 0, Sin(90)),(0, 1, 0),(-Sin(90), 0, 0)])
+    I2 = np.matrix([(CosEx(90), 0, SinEx(90)),(0, 1, 0),(-SinEx(90), 0, CosEx(90))])
     I3 = np.matrix([(Cos(25), -Sin(25), 0),(Sin(25), Cos(25), 0),(0, 0, 1)]) 
     print('Result a) = ')
     print(I1*A)
@@ -280,5 +280,3 @@ print("Ví dụ 3 trang 180", '*'*90)
 # Vd3_Tr180()  
 print("Ví dụ 3 trang 312", '*'*90)
 Vd3_Tr312()
-
-
