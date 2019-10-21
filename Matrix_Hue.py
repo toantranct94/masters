@@ -10,9 +10,21 @@ def CubeMatrix(matrix):
  # function cos
 def Cos(self):
     return math.cos(math.radians(self))
+#Function cos (Exception)
+def CosEx(self):
+    return np.around(np.cos(math.radians(self)), decimals=5)
+#Function sin (Exception)                           
+def SinEx(self):
+    return np.around(np.sin(math.radians(self)), decimals=5)
 # function sin
 def Sin(self):
     return math.sin(math.radians(self))
+#function Multiplication
+def MultiplicationMatrix(matrix_a, matrix_b):
+    return (matrix_a * matrix_b)
+def eigenvalues(matrix):
+    return np.linalg.eig(matrix)
+
 #Ví dụ 2, tr35
 def Vd2_Tr35():
     A = np.matrix([(2, 0, -3, 2), (-1, 8, 10, -5)])
@@ -33,7 +45,7 @@ def Vd2_Tr35():
         print('A+C = ',kq3)
     elif lenA != lenC :
         print("A+C = Error 'incompatibility of rows and columns A and C'")    
-# Vd2_Tr35()      
+    
 #Ví dụ 3, tr36
 def Vd3_Tr36():
     A = np.matrix([(0, 9), (2, -3), (-1, 1)])
@@ -44,11 +56,13 @@ def Vd3_Tr36():
     lenC = len(C)
     print("3A + 2B - 1/2C =")
     print((3*A)+(2*B)-(0.5*C))    
+
 #Ví dụ 4, tr37
 def Vd4_Tr37():
     a = np.matrix([(4, -10, 3)])
     b = np.matrix([(-4), (3), (8)]) 
     print("ab = ", a.dot(b)) #tính tích vô hướng sử dụng hàm dot
+
 #Ví dụ 5, tr37
 def Vd5_Tr37():
     A = np.matrix([(1, -3, 0, 4), (-2, 5, -8, 9)])
@@ -59,14 +73,14 @@ def Vd5_Tr37():
         print("AC = ", C.dot(A))
     if C.shape[1] != A.shape[0]:
         print("CA --> Error: ",C.shape[1],'and',A.shape[0]," NOT the same ") 
-# Vd3_Tr36()
+
 #Ví dụ 7, tr40
 def Vd7_Tr40():
     A = np.matrix([(1, -3, 0, 4), (-2, 5, -8, 9)])
     C = np.matrix([(8, 5, 3), (-3, 10, 2),(2, 0, -4), (-1, -7, 5)]) 
     print("A row 2*C = ",A[1].dot(C))
     print("A*C column 3 = ",A.dot(C[:,2]))
-# Vd7_Tr40()
+
 #Ví dụ 8, tr41
 def Vd8_Tr41():
     A = np.matrix([(1, -3, 0, 4), (-2, 5, -8, 9)])
@@ -95,7 +109,7 @@ def Vd8_Tr41():
     print('Ac3 =',Ac3 )
     print('AB =')
     print(AB)
-# Vd8_Tr41()
+
 #Ví dụ 10, tr45
 def Vd10_Tr45():
     A = np.matrix([(4, 10, -7, 0), (5, -1, 3, -2)])
@@ -121,7 +135,7 @@ def Vd10_Tr45():
     print('ET =', ET)
     trE = np.sum(np.diag(E,0))
     print('trE =', trE)
-# Vd10_Tr45()
+
 #Ví dụ 4, tr50
 def Vd4_Tr50():
     A = np.matrix([(-7, 3), (5, 1)])
@@ -135,7 +149,7 @@ def Vd4_Tr50():
     pA = -6*A3 + 10*A - 9*I # câu c
     print("p(A)= ")
     print(pA)
-# Vd4_Tr50()
+
 #Ví dụ 3, tr54
 def Vd3_Tr54():
     A = np.matrix([(-4, -2), (5, 5)])
@@ -143,14 +157,14 @@ def Vd3_Tr54():
     A_1_3 = CubeMatrix(A_1 )
     print("A mũ -3 = ")
     print( A_1_3 )
-# Vd3_Tr54()
+
 #Ví dụ 2, tr68
 def Vd2_Tr68():
     A = np.matrix([(3, 1, 0), (-1, 2, 2), (5, 0, -1)])
     An= np.linalg.inv(A)
     print("Nghịch đảo A = ")
     print(An)
-# Vd2_Tr68()
+
 #Ví dụ 1, tr84
 def Vd1_Tr84():
     A = np.matrix([(3, 1, 0), (-1, 2, 2), (5, 0, -1)])
@@ -160,7 +174,7 @@ def Vd1_Tr84():
     print("x1 = ",float(A_1B[0]) )
     print("x2= ",float(A_1B[1] ))
     print("x3 = ",float(A_1B[2]))
-# Vd1_Tr84()
+
 #Ví dụ 7, tr100
 def Vd7_Tr100():
     A = np.matrix([(3, 2), (-9, 5)])
@@ -172,7 +186,7 @@ def Vd7_Tr100():
     print('det(B) = ',B1)
     C1 = int(np.linalg.det(C)) #c
     print('det(C) = ',C1)
-# Vd7_Tr100()
+
 #Ví dụ 1, tr178
 def Vd1_Tr178():
     A =  np.matrix([[ 2],[-4],[1]])
@@ -187,14 +201,14 @@ def Vd1_Tr178():
     print(I2*B)
     print("The projection here is ")
     print(I3*C)
-# Vd1_Tr178()
+
 #Ví dụ 2, tr179
 def Vd2_Tr179():
     A =  np.matrix([[ 2],[-6]])
     B =  np.matrix([[0],[5],[1]])
     C =  np.matrix([[-3],[4],[-2]])
     I1 = np.matrix([(Cos(30), -Sin(30)), (Sin(30), Cos(30) )])
-    I2 = np.matrix([(0, 0, Sin(90)),(0, 1, 0),(-Sin(90), 0, 0)])
+    I2 = np.matrix([(CosEx(90), 0, SinEx(90)),(0, 1, 0),(-SinEx(90), 0, CosEx(90))])
     I3 = np.matrix([(Cos(25), -Sin(25), 0),(Sin(25), Cos(25), 0),(0, 0, 1)]) 
     print('Result a) = ')
     print(I1*A)
@@ -202,21 +216,67 @@ def Vd2_Tr179():
     print(I2*B)
     print('Result c) = ')
     print(I3*C)
-# Vd2_Tr179()
+
 #Ví dụ 3, tr180
 def Vd3_Tr180():
     A =  np.matrix([[4],[-1],[-3]])
     B =  np.matrix([[4],[-1],[-3]])
     C =  np.matrix([[4],[2]])
     D =  np.matrix([[4],[2]]) 
-
-# Vd3_Tr180()
+    X = np.matrix([(0, 0, 0), (0, 1,0), (0, 0, 0)])
+    Y = np.matrix([(2, 0, 0), (0, 2, 0), (0, 0, 2)])
+    X1 = np.matrix([(Cos(45), -Sin(45)), (Sin(45), Cos(45))])
+    Y1 = np.matrix([(1,0), (0,0)])
+    print('3. a) W = ')
+    print(MultiplicationMatrix(X,Y)*A)
+    print('3. b) W = ')
+    print(MultiplicationMatrix(Y,X)*B)
+    print('3. c) W = ')
+    print(MultiplicationMatrix(X1,Y1)*C)
+    print('3. d) W = ')
+    print(MultiplicationMatrix(Y1, X1)*D)
+    
 #Ví dụ 3, tr312
 def Vd3_Tr312():
     A = np.matrix([(4, 0, 1), (-1, -6, -2), (5, 0, 0)])
-    A = np.matrix([(6, 3, -8), (0, -2, 0), (1, 0, -3)])
-    A = np.matrix([(0, 1, 1), (1, 0, 1), (1, 1, 0)])
-    A = np.matrix([(4, 0, -1), (0, 3, 0), (1, 0, 2)])
+    B = np.matrix([(6, 3, -8), (0, -2, 0), (1, 0, -3)])
+    C = np.matrix([(0, 1, 1), (1, 0, 1), (1, 1, 0)])
+    D = np.matrix([(4, 0, -1), (0, 3, 0), (1, 0, 2)])
+    print("kết quả câu 3 A", eigenvalues(A))
+    print("kết quả câu 3 A", eigenvalues(B))
+    print("kết quả câu 3 A", eigenvalues(C))
+    print("kết quả câu 3 A", eigenvalues(D))
+
+
+print("Ví dụ 2 trang 35", '*'*90)
+# Vd2_Tr35()  
+print("Ví dụ 3 trang 36", '*'*90)
+# Vd3_Tr36()
+print("Ví dụ 4 trang 37", '*'*90)
+# Vd4_Tr37()
+print("Ví dụ 5 trang 37", '*'*90)
+# Vd5_Tr37()
+print("Ví dụ 7 trang 40", '*'*90)
+# Vd7_Tr40()
+print("Ví dụ 8 trang 41", '*'*90)
+# Vd8_Tr41()
+print("Ví dụ 10 trang 45", '*'*90)
+# Vd10_Tr45()
+print("Ví dụ 4 trang 50", '*'*90)
+# Vd4_Tr50()
+print("Ví dụ 3 trang 54", '*'*90)
+# Vd3_Tr54()
+print("Ví dụ 2 trang 68", '*'*90)
+# Vd2_Tr68()
+print("Ví dụ 1 trang 84", '*'*90)
+# Vd1_Tr84()
+print("Ví dụ 7 trang 100", '*'*90)
+# Vd7_Tr100()
+print("Ví dụ 1 trang 178", '*'*90)
+# Vd1_Tr178()
+print("Ví dụ 2 trang 179", '*'*90)
+# Vd2_Tr179()
+print("Ví dụ 3 trang 180", '*'*90)
+# Vd3_Tr180()  
+print("Ví dụ 3 trang 312", '*'*90)
 Vd3_Tr312()
-
-
