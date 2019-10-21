@@ -72,6 +72,7 @@ class Optimizer:
         '''
         function_gx = str(function_gx)
         # init x1, x2
+        # x1, x2 = -15, 15
         x1, x2 = -2.25, 5.5
         rate = 0.0001
         while True:
@@ -84,7 +85,7 @@ class Optimizer:
                 x1 = x
         
             if abs(y) <= rate:
-                print("Extreme value is {} approximately".format(x))
+                print("Cực trị gần đúng là:  {}".format(x))
                 return x
 
         pass
@@ -101,6 +102,7 @@ if __name__ == "__main__":
     _x = 1/a
     op.find_extreme(function_fx, a, _x)
     x_fx = np.linspace(-0.75,5,100)
+    # x_fx = np.linspace(-5,15,200)
     # op.draw(function_fx, x_fx)
 
     print("*"*100)
