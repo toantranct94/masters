@@ -1,4 +1,5 @@
 import numpy as np 
+from math import sin, cos, sqrt 
 
 class Matrix:
     def __init__(self, rows=None,cols=None, numbers=None, name=None):
@@ -307,7 +308,50 @@ if __name__ == "__main__":
     matrix_projection_yz = Matrix(rows=3, cols=3, numbers=nubmers_projection_yz).get()
     calculator.multiply(matrix_projection_yz, vector_x)
     print("VD 2 trang 178")
+    print("A")
+    numbers_w = [cos(np.deg2rad(30)), -sin(np.deg2rad(30)), sin(np.deg2rad(30)), cos(np.deg2rad(30))]
+    numbers_x = [2, -6]
+    matrix_W = Matrix(rows=2, cols=2, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=2, cols=1, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
+    print("B")
+    numbers_w = [cos(np.deg2rad(90)), 0, sin(np.deg2rad(90)), 0, 1, 0, -sin(np.deg2rad(90)), 0, cos(np.deg2rad(90))]
+    numbers_x = [0, 5, 1]
+    matrix_W = Matrix(rows=3, cols=3, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=3, cols=1, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
+    print("C")
+    numbers_w = [cos(np.deg2rad(25)), -sin(np.deg2rad(25)), 0, sin(np.deg2rad(25)), cos(np.deg2rad(25)), 0, 0, 0, 1]
+    numbers_x = [-3, 4, -2]
+    matrix_W = Matrix(rows=3, cols=3, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=3, cols=1, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
 
+    print("VD 3 trang 179")
+    print("A")
+    numbers_w = [0, 0, 0, 0, 2, 0, 0, 0, 0]
+    numbers_x = [4, 1, -3]
+    matrix_W = Matrix(rows=3, cols=3, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=3, cols=1, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
+    print("B")
+    numbers_w = [2, 0, 0, 0, 2, 0, 0, 0, 2]
+    numbers_x = [0, 0, 0, 0, 1, 0, 0, 0, 0]
+    matrix_W = Matrix(rows=3, cols=3, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=3, cols=3, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
+    print("C")
+    numbers_w = [sqrt(2)/2, 0, sqrt(2)/2, 0]
+    numbers_x = [4, 2]
+    matrix_W = Matrix(rows=2, cols=2, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=2, cols=1, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
+    print("D")
+    numbers_w = [1, 0, 0, 0]
+    numbers_x = [sqrt(2)/2, -sqrt(2)/2, sqrt(2)/2, sqrt(2)/2]
+    matrix_W = Matrix(rows=2, cols=2, numbers=numbers_w, name='W').get()
+    vector_x = Matrix(rows=2, cols=2, numbers=numbers_x, name='x').get()
+    calculator.multiply(matrix_W, vector_x)
 
     print("*"*100)
     '''

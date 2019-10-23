@@ -22,6 +22,9 @@ def Sin(self):
 #function Multiplication
 def MultiplicationMatrix(matrix_a, matrix_b):
     return (matrix_a * matrix_b)
+def eigenvalues(matrix):
+    return np.linalg.eig(matrix)
+
 #Ví dụ 2, tr35
 def Vd2_Tr35():
     A = np.matrix([(2, 0, -3, 2), (-1, 8, 10, -5)])
@@ -205,7 +208,7 @@ def Vd2_Tr179():
     B =  np.matrix([[0],[5],[1]])
     C =  np.matrix([[-3],[4],[-2]])
     I1 = np.matrix([(Cos(30), -Sin(30)), (Sin(30), Cos(30) )])
-    I2 = np.matrix([(0, 0, Sin(90)),(0, 1, 0),(-Sin(90), 0, 0)])
+    I2 = np.matrix([(CosEx(90), 0, SinEx(90)),(0, 1, 0),(-SinEx(90), 0, CosEx(90))])
     I3 = np.matrix([(Cos(25), -Sin(25), 0),(Sin(25), Cos(25), 0),(0, 0, 1)]) 
     print('Result a) = ')
     print(I1*A)
@@ -239,6 +242,11 @@ def Vd3_Tr312():
     B = np.matrix([(6, 3, -8), (0, -2, 0), (1, 0, -3)])
     C = np.matrix([(0, 1, 1), (1, 0, 1), (1, 1, 0)])
     D = np.matrix([(4, 0, -1), (0, 3, 0), (1, 0, 2)])
+    print("kết quả câu 3 A", eigenvalues(A))
+    print("kết quả câu 3 A", eigenvalues(B))
+    print("kết quả câu 3 A", eigenvalues(C))
+    print("kết quả câu 3 A", eigenvalues(D))
+
 
 print("Ví dụ 2 trang 35", '*'*90)
 # Vd2_Tr35()  
@@ -271,6 +279,4 @@ print("Ví dụ 2 trang 179", '*'*90)
 print("Ví dụ 3 trang 180", '*'*90)
 # Vd3_Tr180()  
 print("Ví dụ 3 trang 312", '*'*90)
-# Vd3_Tr312()
-
-
+Vd3_Tr312()
