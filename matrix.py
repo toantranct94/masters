@@ -118,6 +118,11 @@ class MatrixCalculator:
         print("eigenvalues: \n", eigenvalues)
         return eigenvalues
 
+    def eigenvectors(self, matrix):
+        _, eigenvectors = np.linalg.eig(matrix)
+        print("eigenvectors: \n", eigenvectors)
+        return eigenvectors
+
 if __name__ == "__main__":
     calculator = MatrixCalculator()
     '''
