@@ -11,25 +11,22 @@ class PCA_LSA:
     def draw_PCA(self, x, y):
         x_number_list = np.asarray(x[:,0].T)[0,:]
         y_number_list = np.asarray(y[:,0].T)[0,:]
-        fig, ax = plt.subplots()
-        # ax.scatter(x_number_list, y_number_list,c="red", s=10)
-        ax.plot(x_number_list, y_number_list, 'rx', label='Data')
-        # ax.plot(x_number_list, x*theta,'b',label='linear regression')
-        ax.set_title("Original PCA data ")
-        # plt.xlabel("X number")
-        # plt.ylabel("Y number")
+        plt.axhline(linewidth=1, color='k', linestyle='--')
+        plt.axvline(linewidth=1, color='k', linestyle='--')
+        plt.plot(x_number_list, y_number_list, 'rx', label='Data',linewidth=1 )
+        plt.title("Original PCA data ")
         plt.legend()
         plt.show()
-    def drawFinal_PCA(self, transformed_Data):
-        fig, ax = plt.subplots()
-        ax.plot(transformed_Data[:,0], transformed_Data[:,1], 'rx', label='Transformed Data')
-        ax.set_title("Data Transformed with 2 eigenvectors ")
+    def drawFinal_PCA(self, transformed_Data, DataAdjust):
+        plt.axhline(linewidth=0.5, color='k', linestyle='--')
+        plt.axvline(linewidth=0.5, color='k', linestyle='--')
+        plt.plot(DataAdjust[:,0],DataAdjust[:,1], 'rx', label='Transformed Data',  linewidth=0.5)
+        plt.plot(DataAdjust[:,0],transformed_Data[:,0],  '--', label='Data',  linewidth=0.5)
+        plt.plot(DataAdjust[:,0],transformed_Data[:,1],  '--', label='Data',  linewidth=0.5)
+        plt.title("Data Transformed with 2 eigenvectors ")
         plt.legend()
         plt.show()
-    def Calculate_PCA(self, x,y, m):
-        '''
-        
-        '''
+    def DataAdjust(self, x,y, m):
         x_number_list = np.hstack((x, y))
         count_m = len(x)
         m1m2 = (1/count_m)*(np.transpose(x_number_list))*m
@@ -37,6 +34,10 @@ class PCA_LSA:
         col1 = x_number_list[:,0]-m1m2[0,0]
         col2 = x_number_list[:,1]-m1m2[1,0]
         DataAdjust= np.hstack((col1, col2))
+        return DataAdjust
+    def Calculate_PCA(self, x,y, m):
+        p = PCA_LSA()
+        DataAdjust= p.DataAdjust(x,y,m)
         C = np.transpose(DataAdjust) * DataAdjust
         w, v = la.eig(C)
         print("Eigenvalues: ")
@@ -44,12 +45,15 @@ class PCA_LSA:
         print("Eigenvectors: ")
         print(v)
         transformed_Data_x =[]
+        transformed_Data_x1 =[]
         transformed_Data_y =[]
+        transformed_Data_y1 =[]
         for row in DataAdjust:
-            row*(v[:,1])
-            row*(v[:,0])
-            transformed_Data_x.append(np.squeeze(np.asarray([row*(v[:,1])])))
-            transformed_Data_y.append(np.squeeze(np.asarray([row*(v[:,0])])))
+            print(v[0,0]/v[1,0]*2)
+            transformed_Data_x.append(np.squeeze(np.asarray([(v[0,0]/v[1,0])*row[0,0]])))
+            transformed_Data_y.append(np.squeeze(np.asarray([(v[0,1]/v[1,1])*row[0,0]])))
+            # transformed_Data_x.append(np.squeeze(np.asarray([row*(v[:,1])])))
+            # transformed_Data_y.append(np.squeeze(np.asarray([row*(v[:,0])])))
         transformed_Data_ts = np.vstack([np.transpose(transformed_Data_x), np.transpose(transformed_Data_y)])
         transformed_Data = np.transpose(transformed_Data_ts)
         print("Transformed Data: ")
@@ -63,10 +67,11 @@ if __name__ == "__main__":
     num_rows = 10
     num_cols = 2
     m = np.full((num_rows, num_cols), 1)
-    # pca.draw_PCA(x,y)
+    pca.draw_PCA(x,y)
     transformed_Data = pca.Calculate_PCA(x,y, m)
     # print(transformed_Data[:,0])
-    pca.drawFinal_PCA(transformed_Data)
+    DataAdjust= pca.DataAdjust(x,y,m)
+    pca.drawFinal_PCA(transformed_Data, DataAdjust )
 
 
    
