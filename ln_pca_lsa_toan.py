@@ -66,6 +66,16 @@ class LinearRegression:
         beta_hat = self.mt_calculator.multiply(xTx_inv, xTy)
         print("-"*100)
         print("Beta hat \n", beta_hat)
+        # compute extreme values
+        print("-"*100)
+        eigenvalues = self.mt_calculator.eigenvalues(xTx)
+        if np.all(eigenvalues > 0):
+            print("{} is maximize".format(beta_hat))
+        elif np.all(eigenvalues < 0):
+            print("{} is minimize".format(beta_hat))
+        else:
+            print("Not defined")
+
         # predict output y
         y_hat = self.mt_calculator.multiply(x, beta_hat)
         print("-"*100)
