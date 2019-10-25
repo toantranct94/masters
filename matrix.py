@@ -30,13 +30,15 @@ class Matrix:
         return self.matrix
 
 class MatrixCalculator:
-    def __init__(self):
+    def __init__(self, is_debugging=True):
+        self.is_debugging = is_debugging
         pass
 
     def plus(self, added_matrix_1=None, added_matrix_2=None):
         if added_matrix_1.shape == added_matrix_2.shape:
             result = np.add(added_matrix_1, added_matrix_2)
-            print("plus: \n",result)
+            if self.is_debugging:
+                print("plus: \n",result)
             return result
         else:
             print("Operands could not be broadcast together with shapes {} {}".format(added_matrix_1.shape, added_matrix_2.shape))
@@ -44,7 +46,8 @@ class MatrixCalculator:
     def subtract(self, sub_matrix_1=None, sub_matrix_2=None):
         if sub_matrix_1.shape == sub_matrix_2.shape:
             result = np.subtract(sub_matrix_1, sub_matrix_2)
-            print("subtract: \n",result)
+            if self.is_debugging:
+                print("subtract: \n",result)
             return result
         else:
             print("Operands could not be broadcast together with shapes {} {}".format(sub_matrix_1.shape, sub_matrix_2.shape))
@@ -52,7 +55,8 @@ class MatrixCalculator:
     def multiply(self, matrix_1, matrix_2):
         if matrix_1.shape[-1] == matrix_2.shape[0]:
             result = np.dot(matrix_1, matrix_2)
-            print("Multiply: \n", result)
+            if self.is_debugging:
+                print("Multiply: \n", result)
             return result
         else:
             print("Operands could not be broadcast together with shapes {} {}".format(matrix_1.shape, matrix_2.shape))
@@ -62,7 +66,8 @@ class MatrixCalculator:
         matrix_B = np.dot(2, matrix_B)
         matrix_C = np.dot(0.5, matrix_C)
         result = matrix_A + matrix_B - matrix_C
-        print("Compute: \n", result)
+        if self.is_debugging:
+            print("Compute: \n", result)
         return result
 
     def get_rows(self, matrix, index): 
@@ -75,20 +80,23 @@ class MatrixCalculator:
 
     def transpose(self, matrix):
         result = np.transpose(matrix)
-        print("Transpose: \n", result)
+        if self.is_debugging:
+            print("Transpose: \n", result)
         return result
 
     def trace(self, matrix):
         if matrix.shape[0] == matrix.shape[1]:
             result = np.trace(matrix)
-            print("Trace: \n", result)
+            if self.is_debugging:
+                print("Trace: \n", result)
             return result
         else:
             print("Not defined since this matrix is not square")
 
     def powm(self, matrix, n):
         result = np.linalg.matrix_power(matrix, n)
-        print("pow: \n", result)
+        if self.is_debugging:
+            print("pow: \n", result)
         return result
 
     def create_indentity_matrix(self, n):
@@ -100,23 +108,33 @@ class MatrixCalculator:
         matrix = np.dot(10, matrix)
         indentity_matrix = np.dot(-9, indentity_matrix)
         result = matrix_pow_3 + matrix + indentity_matrix
-        print("p(A) \n", result)
+        if self.is_debugging:
+            print("p(A) \n", result)
         return result
 
     def inverse(self, matrix):
         result = np.linalg.inv(matrix)
-        print("Inverse: \n", result)
+        if self.is_debugging:
+            print("Inverse: \n", result)
         return result 
 
     def det(self, matrix):
         result = np.linalg.det(matrix)
-        print("det: \n", result)
+        if self.is_debugging:
+            print("det: \n", result)
         return result
     
     def eigenvalues(self, matrix):
         eigenvalues, _ = np.linalg.eig(matrix)
-        print("eigenvalues: \n", eigenvalues)
+        if self.is_debugging:
+            print("eigenvalues: \n", eigenvalues)
         return eigenvalues
+
+    def eigenvectors(self, matrix):
+        _, eigenvectors = np.linalg.eig(matrix)
+        if self.is_debugging:
+            print("eigenvectors: \n", eigenvectors)
+        return eigenvectors
 
 if __name__ == "__main__":
     calculator = MatrixCalculator()
