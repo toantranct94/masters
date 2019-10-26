@@ -7,13 +7,13 @@ from sklearn.linear_model import LinearRegression
 class Linear_Regression:
     def __init__(self):
         pass
-    def draw_multiple_points(self, x, y, theta):
+    def draw_multiple_points(self, x, y):
         x_number_list = np.asarray(x[:,1].T)[0,:]
         y_number_list = np.asarray(y.T)[0,:]
         fig, ax = plt.subplots()
         # ax.scatter(x_number_list, y_number_list,c="red", s=10)
-        ax.plot(x_number_list, y_number_list, 'rx', label='training data')
-        ax.plot(x_number_list, x*theta,'b',label='linear regression')
+        ax.plot(x_number_list, y_number_list, 'rx', label='training data', linewidth=0.5)
+        # ax.plot(x_number_list, x*theta,'b',label='linear regression')
         ax.set_title("Biểu diễn đám mây dữ liệu ")
         plt.xlabel("X number")
         plt.ylabel("Y number")
@@ -54,9 +54,10 @@ if __name__ == "__main__":
     y_number_list = np.matrix([[45],[58],[50],[54],[62],[53]])
     print ("vector X = \n", x_number_list)
     print ("vector Y = \n", y_number_list)
-    # x_number_list = np.insert(x_number_list, 0, 1, axis=1)
+   
     # (XTX)-1 XTY
-    theta = ln.calculator(x_number_list, y_number_list)
+    ln.calculator(x_number_list, y_number_list)
     # ln.calculator(x_number_list,y_number_list)
-    # ln.draw_multiple_points(x_number_list, y_number_list, theta)
+    x_number_list = np.insert(x_number_list, 0, 1, axis=1)
+    ln.draw_multiple_points(x_number_list, y_number_list)
         
