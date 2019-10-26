@@ -179,10 +179,10 @@ if __name__ == "__main__":
     num_rows = 10
     num_cols = 2
     m = np.full((num_rows, num_cols), 1)
-    # pca.draw_PCA(x,y)
-    # transformed_Data = pca.Calculate_PCA(x,y, m)
-    # DataAdjust= pca.DataAdjust(x,y,m)
-    # pca.drawFinal_PCA(transformed_Data, DataAdjust )
+    pca.draw_PCA(x,y)
+    transformed_Data = pca.Calculate_PCA(x,y, m)
+    DataAdjust= pca.DataAdjust(x,y,m)
+    pca.drawFinal_PCA(transformed_Data, DataAdjust )
     '''
     LSA---------------------
     '''
