@@ -134,7 +134,7 @@ class PCA:
     def process(self):
         # stick x, y together
         XY = np.concatenate((self.x, self.y), axis=1)
-        self.visualize(x=self.x, y=self.y, limits=(-1, 4), title='Original PCA data')
+        self.visualize(x=self.x, y=self.y, limits=(-10, 60), title='Original PCA data')
 
         # compute mean of x and y. mean: gia tri trung binh
         m = np.mean(XY.T, axis=1)
@@ -150,7 +150,7 @@ class PCA:
         print("Eigenvalues \n", eigenvalues)
         print("Eigenvectors \n", eigenvectors)
 
-        self.visualize(x_tilde=X_tilde, eigenvectors=eigenvectors, limits=(-2, 2), title='Mean adjusted data with eigenvectors overlayed')
+        self.visualize(x_tilde=X_tilde, eigenvectors=eigenvectors, limits=(-40, 40), title='Mean adjusted data with eigenvectors overlayed')
 
         idx = eigenvalues.argsort()[::-1]
         eigenvectors = eigenvectors[:, idx]
@@ -162,14 +162,14 @@ class PCA:
         print("-"*100)
         print("Final data \n", final_data)
 
-        # transformed_data = eigenvectors @ X_tilde.T
-        # transformed_data = transformed_data.T
-        # print("-"*100)
-        # print("Transformed data \n", transformed_data)
-        # x = transformed_data[:, 0]
-        # y = transformed_data[:, 1]
+        transformed_data = eigenvectors @ X_tilde.T
+        transformed_data = transformed_data.T
+        print("-"*100)
+        print("Transformed data \n", transformed_data)
+        x = transformed_data[:, 0]
+        y = transformed_data[:, 1]
 
-        # self.visualize(x=x, y=y, limits=(-2, 2), title='Data transformed with 2 eigenvectors')
+        self.visualize(x=x, y=y, limits=(-30, 30), title='Data transformed with 2 eigenvectors')
 
 class LSA:
     def __init__(self, docs=None, query=None):
@@ -282,23 +282,23 @@ if __name__ == "__main__":
     Linear Regression
     '''
     file_path_ln = 'masters/data_ln.csv'
-    x = [18, 25, 15, 22, 24, 20]
-    y = [45, 58, 50, 54, 62, 53]
-    '''
-    read and write data from/to csv file
-    # csv = CSV()
-    # csv.write(file_path=file_path_ln, data=list(zip(x, y)))
-    # csv.read(file_path=file_path_ln)
-    '''
-    print("Hồi quy tuyến tính")
+    # x = [18, 25, 15, 22, 24, 20]
+    # y = [45, 58, 50, 54, 62, 53]
+    # '''
+    # read and write data from/to csv file
+    # # csv = CSV()
+    # # csv.write(file_path=file_path_ln, data=list(zip(x, y)))
+    # # csv.read(file_path=file_path_ln)
+    # '''
+    # print("Hồi quy tuyến tính")
 
-    ln = LinearRegression(x, y)
-    ln.process()
-    # dữ liệu vẽ đường hồi quy
-    x0 = np.linspace(10, 30, 2)
-    # ln.visualize(x0)
-    ln.visualize()
-    ln.predict(30)
+    # ln = LinearRegression(x, y)
+    # ln.process()
+    # # dữ liệu vẽ đường hồi quy
+    # x0 = np.linspace(10, 30, 2)
+    # # ln.visualize(x0)
+    # ln.visualize()
+    # ln.predict(30)
 
     print("="*100)
 
@@ -306,22 +306,32 @@ if __name__ == "__main__":
     '''
     PCA
     '''
-    x = [2.5, 0.5, 2.2, 1.9, 3.1, 2.3, 2, 1, 1.5, 1.1]
-    y = [2.4, 0.7, 2.9, 2.2, 3.0, 2.7, 1.6, 1.1, 1.6, 0.9]
-    pca = PCA(x=x, y=y)
-    pca.process()
-    print("="*100)
+    # x = [2.5, 0.5, 2.2, 1.9, 3.1, 2.3, 2, 1, 1.5, 1.1]
+    # y = [2.4, 0.7, 2.9, 2.2, 3.0, 2.7, 1.6, 1.1, 1.6, 0.9]
+    # x = [39.17, 7.54, 3.41, 19.84, 56.69, 46.86]
+    # y = [32.6, 46.9, 36.8, 39.9, 42.5, 40.8]
+    # pca = PCA(x=x, y=y)
+    # pca.process()
+    # print("="*100)
 
-    print("LSA")
-    '''
-    LSA
-    '''
+    # print("LSA")
+    # '''
+    # LSA
+    # '''
+    # docs = [
+    #     'Shipment of gold damaged in a fire', 
+    #     'Delivery of silver arrived in a silver truck', 
+    #     'Shipment of gold arrived in a truck'
+    # ]
+    # query = 'gold silver truck'
     docs = [
-        'Shipment of gold damaged in a fire', 
-        'Delivery of silver arrived in a silver truck', 
-        'Shipment of gold arrived in a truck'
+        ' Romeo and Juliet',
+        ' Juliet : O Happy dagger !',
+        ' Romeo died by dagger',
+        "' Live free or die ' that's the New-Hampshire 's motto",
+        ' Did you know , New-Hampshire is in New England'
     ]
-    query = 'gold silver truck'
+    query = 'Dagger and Die'
     lsa = LSA(docs=docs, query=query)
     lsa.process()
     pass
